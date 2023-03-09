@@ -70,7 +70,7 @@ const ItemsToReturnForm = ({ form, order, isClaim = false }: Props) => {
 
   const table = useReactTable({
     data: fields,
-    columns,
+    columns: columns as any,
     getCoreRowModel: getCoreRowModel(),
     getExpandedRowModel: getExpandedRowModel(),
   })
