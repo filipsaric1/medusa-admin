@@ -1,10 +1,6 @@
 import { useAdminGetSession, useAdminStore } from "medusa-react"
 import React, { useContext, useEffect, useState } from "react"
 
-export enum FeatureFlag {
-  PRODUCT_CATEGORIES = "product_categories",
-}
-
 export const defaultFeatureFlagContext: {
   featureToggleList: Record<string, boolean>
   isFeatureEnabled: (flag: string) => boolean
@@ -36,13 +32,7 @@ export const FeatureFlagProvider = ({ children }) => {
       return
     }
 
-    setFeatureFlags([
-      ...store["feature_flags"],
-      ...store["modules"].map((module) => ({
-        key: module.module,
-        value: true,
-      })),
-    ])
+    setFeatureFlags(store["feature_flags"])
   }, [isFetching, store, user, isLoading])
 
   const featureToggleList = featureFlags.reduce(
